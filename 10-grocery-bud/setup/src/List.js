@@ -8,6 +8,8 @@ const List = ({ items, removeItem, editItem }) => {
         return (
           <article key={id} className="grocery-item">
             <p className="title">{title}</p>
+            {/* important to understand the inline calls  */}
+            {/* https://codersera.com/blog/react-onclick-event-handling/ */}
             <div className="btn-container">
               <button
                 type="button"

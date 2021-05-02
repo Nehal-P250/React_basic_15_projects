@@ -5,6 +5,18 @@ import logo from "./logo.svg";
 
 const Navbar = () => {
   const [showLink, setShowLink] = useState(true);
+  const linksContainerRef = useRef(null);
+  const linksRef = useRef(null);
+
+  // adjusting the height based on the number of links present
+  useEffect(() => {
+    const linksHeight = linksRef.current.getBoundingClientRect().height;
+    if (showLink) {
+      linksContainerRef.current.style.height = `${linksHeight}px`;
+    } else {
+      linksContainerRef.current.style.height = "0px";
+    }
+  }, [showLink]);
 
   return (
     <nav>
@@ -16,14 +28,10 @@ const Navbar = () => {
           </button>
         </div>
 
-        <div
-          className={`${
-            showLink ? "links-container show-container" : "links-container"
-          }`}
-        >
+        <div className="links-container" ref={linksContainerRef}>
           {/* here the links are related to our project and are handled by the 
         react router , so use react router to organize them */}
-          <ul className="links">
+          <ul className="links" ref={linksRef}>
             {links.map((link) => {
               const { id, url, text } = link;
               return (

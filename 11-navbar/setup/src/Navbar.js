@@ -16,22 +16,24 @@ const Navbar = () => {
           </button>
         </div>
 
-        {showLink && (
-          <div className="links-container show-container">
-            {/* here the links are related to our project and are handled by the 
+        <div
+          className={`${
+            showLink ? "links-container show-container" : "links-container"
+          }`}
+        >
+          {/* here the links are related to our project and are handled by the 
         react router , so use react router to organize them */}
-            <ul className="links">
-              {links.map((link) => {
-                const { id, url, text } = link;
-                return (
-                  <li key={id}>
-                    <a href={url}>{text}</a>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        )}
+          <ul className="links">
+            {links.map((link) => {
+              const { id, url, text } = link;
+              return (
+                <li key={id}>
+                  <a href={url}>{text}</a>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
 
         {/* here the links are for social media and do not depnds on our project 
         hence fetch it form some API or keep it constant. */}
